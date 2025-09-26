@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://S41lesh.github.io/DigiPlat",
+  "homepage": "https://s41lesh.github.io/DigiPlat",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
