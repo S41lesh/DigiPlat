@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://saileshg.github.io/DigiPlat",
+  "homepage": "https://S4ilesh.github.io/DigiPlat",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
