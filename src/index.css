@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Deep space theme with aurora accents */
+    --background: 222 47% 2%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 4%;
+    --card-foreground: 210 40% 98%;
+    --card-hover: 222 47% 8%;
+
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 2%;
+    --primary-glow: 199 89% 65%;
+
+    --secondary: 267 84% 61%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 280 85% 65%;
+    --accent-foreground: 210 40% 98%;
+    --accent-glow: 280 100% 80%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    /* Aurora colors */
+    --aurora-green: 142 71% 45%;
+    --aurora-blue: 199 89% 48%;
+    --aurora-purple: 267 84% 61%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(280 85% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(267 84% 61%), hsl(199 89% 48%));
+    --gradient-aurora: linear-gradient(135deg, hsl(142 71% 45% / 0.3), hsl(199 89% 48% / 0.3), hsl(267 84% 61% / 0.3));
+    --gradient-mesh: radial-gradient(at 20% 80%, hsl(199 89% 48% / 0.2) 0%, transparent 50%),
+                     radial-gradient(at 80% 20%, hsl(267 84% 61% / 0.2) 0%, transparent 50%),
+                     radial-gradient(at 40% 40%, hsl(142 71% 45% / 0.1) 0%, transparent 50%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsl(199 89% 48% / 0.5);
+    --shadow-glow-lg: 0 0 60px hsl(199 89% 48% / 0.5);
+    --shadow-neon: 0 0 20px hsl(199 89% 48% / 0.8), 0 0 40px hsl(199 89% 48% / 0.6), 0 0 60px hsl(199 89% 48% / 0.4);
+  }
+
+  .dark {
+    /* Keep same values as we're already in dark mode */
+    --background: 222 47% 2%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 4%;
+    --card-foreground: 210 40% 98%;
+    --card-hover: 222 47% 8%;
+
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 2%;
+    --primary-glow: 199 89% 65%;
+
+    --secondary: 267 84% 61%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 280 85% 65%;
+    --accent-foreground: 210 40% 98%;
+    --accent-glow: 280 100% 80%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/40;
+  }
+}
+
+@layer components {
+  /* Glass card styles */
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-border/50 rounded-lg;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.3), hsl(var(--card) / 0.1));
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-300 hover:bg-card-hover/50 hover:border-primary/30 hover:shadow-glow;
+  }
+
+  /* Glow text */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  /* Button variants */
+  .btn-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3);
+  }
+
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-primary opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-20;
+  }
+
+  /* Aurora background effect */
+  .aurora-bg {
+    position: relative;
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background)));
+  }
+
+  .aurora-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-mesh);
+    opacity: 0.4;
+    animation: aurora 60s linear infinite;
+  }
+
+  /* Magnetic hover effect */
+  .magnetic {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
+
+  /* Fade in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
