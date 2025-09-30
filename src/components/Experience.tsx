@@ -4,7 +4,7 @@ const experiences = [
   {
     title: 'Data Scientist',
     company: 'Gramener',
-    period: '2020 - 2024',
+    period: '2024 - Present',
     achievements: [
       'Architected Python microservices for processing 10k+ portfolio records, boosting data accuracy to 95% and cutting manual effort by 60%',
       'Developed a fuzzy matching pipeline with Rapid Fuzz, achieving 90%+ precision in de-duplicating entities and enhancing data quality KPIs',

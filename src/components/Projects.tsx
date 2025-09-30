@@ -7,16 +7,14 @@ const projects = [
     title: 'Smart Meter Energy Monitoring',
     description: 'End-to-end IoT system for real-time power monitoring, featuring an AWS pipeline and LSTM-based anomaly detection with Sagemaker.',
     technologies: ['IoT', 'AWS', 'Sagemaker', 'LSTM', 'Python'],
-    github: '#',
-    live: '#',
+    github: 'https://github.com/S41lesh/Smart-Energy-Monitoring-System--NNDL-Model',
+    live: 'https://github.com/S41lesh/Smart-Energy-Monitoring-System--NNDL-Model',
     featured: true,
   },
   {
     title: 'Cloud-Native MERN App',
     description: 'Scalable MERN stack application deployed on Azure, using Functions, VMs, and CosmosDB for a highly available, low-latency platform.',
     technologies: ['MERN', 'Azure', 'CosmosDB', 'Node.js', 'React'],
-    github: '#',
-    live: '#',
     featured: true,
   },
   {
