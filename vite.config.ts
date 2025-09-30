@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(() => ({
-  base: "/", // 👈 force assets to load from /DigiPlat/
+  base: "/digiplat", // 👈 force assets to load from /DigiPlat/
   server: {
     host: "::",
     port: 8080,
