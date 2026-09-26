@@ -20,19 +20,19 @@ export const Navigation = () => {
       setScrolled(window.scrollY > 50);
 
       // Update active section based on scroll position
-      const sections = navItems.map(item => item.href.substring(1));
-      const current = sections.find(section => {
+      const sections = navItems.map((item) => item.href.substring(1));
+      const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          return rect.top <= 120 && rect.bottom >= 120;
         }
         return false;
       });
       if (current) setActiveSection(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -41,16 +41,17 @@ export const Navigation = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 py-4'
+          ? 'bg-background/85 backdrop-blur-xl border-b border-border/50 py-4'
           : 'bg-transparent py-6'
       )}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a
           href="#home"
-          className="text-2xl font-bold font-mono group"
+          className="text-2xl font-bold font-display group"
+          aria-label="Sailesh G — home"
         >
-          <span className="text-gradient">Sailesh G</span>
+          <span className="text-gradient-primary">Sailesh G</span>
           <span className="text-primary ml-2 group-hover:text-primary-glow transition-colors">/&gt;</span>
         </a>
 
@@ -76,7 +77,9 @@ export const Navigation = () => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-foreground hover:text-primary transition-colors"
+          className="md:hidden text-foreground hover:text-primary transition-colors p-2 -m-2 rounded-lg focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

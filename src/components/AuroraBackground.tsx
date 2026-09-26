@@ -11,14 +11,6 @@ export const AuroraBackground = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      opacity: number;
-    }> = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -26,20 +18,19 @@ export const AuroraBackground = () => {
     };
 
     const createParticles = () => {
-      particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
-        });
-      }
+      const particleCount = Math.floor(Math.min(canvas.width * canvas.height, 50000) / 15000);
+      return Array.from({ length: particleCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        radius: Math.random() * 1.5 + 0.3,
+        opacity: Math.random() * 0.3 + 0.1,
+        hue: Math.random() > 0.5 ? 199 : 280,
+      }));
     };
+
+    let particles: ReturnType<typeof createParticles> = [];
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -53,52 +44,61 @@ export const AuroraBackground = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+        ctx.fillStyle = `hsla(${particle.hue}, 80%, 45%, ${particle.opacity})`;
         ctx.fill();
+      });
 
-        // Draw connections
-        particles.forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
+      // Subtle connections
+      ctx.globalAlpha = 0.2;
+      particles.forEach((particle, idx) => {
+        const maxDistance = 150;
+        for (let j = idx + 1; j < Math.min(idx + 5, particles.length); j++) {
+          const other = particles[j];
+          const dx = particle.x - other.x;
+          const dy = particle.y - other.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < maxDistance) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 150)})`;
+            ctx.lineTo(other.x, other.y);
+            ctx.strokeStyle = `hsla(${particle.hue}, 80%, 45%, ${0.05 * (1 - distance / maxDistance)})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        });
+        }
       });
+      ctx.globalAlpha = 1.0;
 
       animationFrameId = requestAnimationFrame(drawParticles);
     };
 
     resize();
-    createParticles();
+    particles = createParticles();
     drawParticles();
 
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       resize();
-      createParticles();
-    });
+      particles = createParticles();
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
     <>
-      <div className="fixed inset-0 bg-gradient-to-br from-background via-background to-background">
-        <div className="absolute inset-0 bg-gradient-mesh animate-aurora opacity-30" />
-      </div>
+      <div className="fixed inset-0 bg-gradient-to-br from-background via-background to-background" />
+      <div className="fixed inset-0 bg-gradient-mesh opacity-20" />
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 z-0 opacity-50"
+        className="fixed inset-0 z-0 opacity-40"
         style={{ mixBlendMode: 'screen' }}
+        aria-hidden="true"
       />
     </>
   );

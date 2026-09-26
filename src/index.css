@@ -2,97 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Deep space theme with aurora accents */
-    --background: 222 47% 2%;
-    --foreground: 210 40% 98%;
+    /* Data-centric premium: deep dark with teal primary + amber accent */
+    --background: 224 47% 4%;
+    --foreground: 210 20% 95%;
 
-    --card: 222 47% 4%;
-    --card-foreground: 210 40% 98%;
-    --card-hover: 222 47% 8%;
+    --card: 224 47% 6%;
+    --card-foreground: 210 20% 95%;
+    --card-hover: 224 47% 8%;
 
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 47% 7%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 2%;
-    --primary-glow: 199 89% 65%;
+    --primary: 174 80% 42%;
+    --primary-foreground: 224 47% 4%;
+    --primary-glow: 174 85% 55%;
 
-    --secondary: 267 84% 61%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 217 33% 15%;
+    --secondary-foreground: 210 20% 95%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 15% 62%;
 
-    --accent: 280 85% 65%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 280 100% 80%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 224 47% 4%;
+    --accent-glow: 38 100% 65%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 20% 95%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 199 89% 48%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 174 80% 42%;
 
-    --radius: 0.75rem;
-
-    /* Aurora colors */
-    --aurora-green: 142 71% 45%;
-    --aurora-blue: 199 89% 48%;
-    --aurora-purple: 267 84% 61%;
+    --radius: 0.625rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(280 85% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(267 84% 61%), hsl(199 89% 48%));
-    --gradient-aurora: linear-gradient(135deg, hsl(142 71% 45% / 0.3), hsl(199 89% 48% / 0.3), hsl(267 84% 61% / 0.3));
-    --gradient-mesh: radial-gradient(at 20% 80%, hsl(199 89% 48% / 0.2) 0%, transparent 50%),
-                     radial-gradient(at 80% 20%, hsl(267 84% 61% / 0.2) 0%, transparent 50%),
-                     radial-gradient(at 40% 40%, hsl(142 71% 45% / 0.1) 0%, transparent 50%);
+    --gradient-primary: linear-gradient(135deg, hsl(174 80% 42%), hsl(162 75% 38%));
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%), hsl(45 95% 58%));
+    --gradient-subtle: radial-gradient(at 20% 80%, hsl(174 80% 42% / 0.08) 0%, transparent 50%),
+                       radial-gradient(at 80% 20%, hsl(38 92% 50% / 0.06) 0%, transparent 50%),
+                       radial-gradient(at 50% 50%, hsl(174 80% 42% / 0.04) 0%, transparent 60%);
+
+    /* Grid pattern for subtle technical feel */
+    --grid-pattern: linear-gradient(hsl(174 80% 42% / 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, hsl(174 80% 42% / 0.03) 1px, transparent 1px);
 
     /* Shadows */
-    --shadow-glow: 0 0 20px hsl(199 89% 48% / 0.5);
-    --shadow-glow-lg: 0 0 60px hsl(199 89% 48% / 0.5);
-    --shadow-neon: 0 0 20px hsl(199 89% 48% / 0.8), 0 0 40px hsl(199 89% 48% / 0.6), 0 0 60px hsl(199 89% 48% / 0.4);
+    --shadow-glow: 0 0 32px hsl(174 80% 42% / 0.25);
+    --shadow-glow-lg: 0 0 64px hsl(174 80% 42% / 0.2);
+    --shadow-elevation-1: 0 2px 8px hsl(224 47% 2% / 0.4), 0 1px 2px hsl(224 47% 2% / 0.3);
+    --shadow-elevation-2: 0 8px 24px hsl(224 47% 2% / 0.5), 0 4px 8px hsl(224 47% 2% / 0.3);
+    --shadow-elevation-3: 0 16px 48px hsl(224 47% 2% / 0.6), 0 8px 16px hsl(224 47% 2% / 0.4);
+
+    /* Fonts - set via CSS variables for Tailwind */
+    --font-display: "Space Grotesk", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
   }
 
   .dark {
     /* Keep same values as we're already in dark mode */
-    --background: 222 47% 2%;
-    --foreground: 210 40% 98%;
+    --background: 224 47% 4%;
+    --foreground: 210 20% 95%;
 
-    --card: 222 47% 4%;
-    --card-foreground: 210 40% 98%;
-    --card-hover: 222 47% 8%;
+    --card: 224 47% 6%;
+    --card-foreground: 210 20% 95%;
+    --card-hover: 224 47% 8%;
 
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 47% 7%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 2%;
-    --primary-glow: 199 89% 65%;
+    --primary: 174 80% 42%;
+    --primary-foreground: 224 47% 4%;
+    --primary-glow: 174 85% 55%;
 
-    --secondary: 267 84% 61%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 217 33% 15%;
+    --secondary-foreground: 210 20% 95%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 15% 62%;
 
-    --accent: 280 85% 65%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 280 100% 80%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 224 47% 4%;
+    --accent-glow: 38 100% 65%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 20% 95%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 199 89% 48%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 174 80% 42%;
   }
 }
 
@@ -101,8 +106,28 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
+    background-image: var(--gradient-subtle);
+    background-attachment: fixed;
   }
 
   /* Custom scrollbar */
@@ -116,115 +141,144 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary/20 rounded-full;
+    @apply bg-primary/30 rounded-full;
     transition: background 0.2s;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/40;
+    @apply bg-primary/50;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply bg-background;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 }
 
 @layer components {
   /* Glass card styles */
   .glass-card {
-    @apply bg-card/40 backdrop-blur-xl border border-border/50 rounded-lg;
-    background: linear-gradient(135deg, hsl(var(--card) / 0.3), hsl(var(--card) / 0.1));
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.5), hsl(var(--card) / 0.2));
   }
 
   .glass-card-hover {
-    @apply transition-all duration-300 hover:bg-card-hover/50 hover:border-primary/30 hover:shadow-glow;
+    @apply transition-all duration-300 hover:bg-card-hover/70 hover:border-primary/30 hover:shadow-elevation-2;
   }
 
-  /* Glow text */
-  .text-glow {
-    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  .glass-card-strong {
+    @apply bg-card/80 backdrop-blur-xl border border-border/60 rounded-xl;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.7), hsl(var(--card) / 0.4));
   }
 
-  .text-gradient {
+  /* Text gradient utilities */
+  .text-gradient-primary {
     @apply bg-gradient-primary bg-clip-text text-transparent;
   }
 
+  .text-gradient-accent {
+    @apply bg-gradient-accent bg-clip-text text-transparent;
+  }
+
   /* Button variants */
-  .btn-glow {
-    @apply relative overflow-hidden transition-all duration-300;
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  .btn-primary {
+    @apply relative overflow-hidden bg-primary text-primary-foreground font-medium px-6 py-3 rounded-lg transition-all duration-300;
+    box-shadow: 0 4px 16px hsl(var(--primary) / 0.3);
   }
 
-  .btn-glow:hover {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3);
+  .btn-primary:hover {
+    box-shadow: 0 8px 28px hsl(var(--primary) / 0.4), 0 0 0 1px hsl(var(--primary) / 0.2);
+    transform: translateY(-1px);
   }
 
-  .btn-glow::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-primary opacity-0 transition-opacity duration-300;
+  .btn-primary:active {
+    transform: translateY(0);
   }
 
-  .btn-glow:hover::before {
-    @apply opacity-20;
+  .btn-primary:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 
-  /* Aurora background effect */
-  .aurora-bg {
-    position: relative;
-    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background)));
+  .btn-secondary {
+    @apply relative bg-card text-card-foreground font-medium px-6 py-3 rounded-lg border border-border/50 transition-all duration-300 hover:border-primary/40 hover:bg-card-hover hover:shadow-elevation-1;
   }
 
-  .aurora-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-mesh);
-    opacity: 0.4;
-    animation: aurora 60s linear infinite;
+  .btn-secondary:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 
-  /* Magnetic hover effect */
-  .magnetic {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  .btn-ghost {
+    @apply relative text-muted-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:text-foreground hover:bg-accent/10;
   }
 
-  /* Animation utilities */
-  .animate-fade-in {
-    animation: fade-in 0.6s ease-out forwards;
+  /* Section container */
+  .section-container {
+    @apply container mx-auto px-6 md:px-10 lg:px-16;
   }
 
-  .animation-delay-200 {
-    animation-delay: 200ms;
+  .section-header {
+    @apply text-center mb-16 md:mb-20;
   }
 
-  .animation-delay-400 {
-    animation-delay: 400ms;
+  .section-label {
+    @apply font-mono text-primary text-sm md:text-base tracking-wider mb-4 inline-block;
   }
 
-  .animation-delay-600 {
-    animation-delay: 600ms;
+  .section-title {
+    @apply text-display-lg font-display font-bold text-foreground;
   }
 
-  .animation-delay-800 {
-    animation-delay: 800ms;
+  /* Stat badge */
+  .stat-badge {
+    @apply font-mono text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-lg text-sm;
   }
 
-  .animation-delay-1000 {
-    animation-delay: 1000ms;
+  /* Tech tag */
+  .tech-tag {
+    @apply font-mono text-xs px-2.5 py-1 rounded bg-card border border-border/50 text-muted-foreground hover:border-primary/30 hover:text-foreground transition-all duration-200;
   }
 
-  .animation-delay-2000 {
-    animation-delay: 2000ms;
+  /* Link underline animation */
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
   }
 
-  /* Fade in animation */
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Grid background pattern */
+  .grid-bg {
+    background-image: var(--grid-pattern);
+    background-size: 64px 64px;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+  .delay-900 { animation-delay: 900ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Prevent text selection */
+  .select-none {
+    user-select: none;
   }
 }
