@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { useParallaxTransform } from '@/hooks/use-scroll';
 
 export const Footer = () => {
@@ -48,12 +48,7 @@ export const Footer = () => {
 
           {/* Copyright */}
           <div className="text-center">
-            <p className="text-caption text-muted-foreground font-mono flex items-center justify-center gap-2">
-              <span>Designed & Built with</span>
-              <Heart size={14} className="text-primary animate-pulse" aria-hidden="true" />
-              <span>by Sailesh G.</span>
-            </p>
-            <p className="text-caption text-muted-foreground/60 mt-1">
+            <p className="text-caption text-muted-foreground/60 font-mono">
               © {new Date().getFullYear()} All rights reserved.
             </p>
           </div>
